@@ -1,0 +1,19 @@
+services:
+  api:
+    build:
+      context: ./api
+    volumes:
+      - ./messages.json:/usr/src/app/messages.json
+  front:
+    image: httpd:latest
+    volumes:
+      - ./front:/usr/local/apache2/htdocs/
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+      - front
