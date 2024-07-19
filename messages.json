@@ -1,1 +1,134 @@
-[]
+[
+  {
+    "id": 1,
+    "username": "Eva",
+    "message": "Des nouvelles ?",
+    "createdAt": "2024-07-18T13:15:00"
+  },
+  {
+    "id": 2,
+    "username": "Jérémy",
+    "message": "On se retrouve quand ?",
+    "createdAt": "2024-07-18T18:59:00"
+  },
+  {
+    "id": 3,
+    "username": "David",
+    "message": "On se retrouve quand ?",
+    "createdAt": "2024-07-19T06:51:00"
+  },
+  {
+    "id": 4,
+    "username": "Bob",
+    "message": "Content de vous voir !",
+    "createdAt": "2024-07-18T17:05:00"
+  },
+  {
+    "id": 5,
+    "username": "Eva",
+    "message": "Bonne soirée !",
+    "createdAt": "2024-07-18T11:43:00"
+  },
+  {
+    "id": 6,
+    "username": "François",
+    "message": "Salut tout le monde !",
+    "createdAt": "2024-07-18T15:47:00"
+  },
+  {
+    "id": 7,
+    "username": "Chloé",
+    "message": "Je suis disponible.",
+    "createdAt": "2024-07-18T22:56:00"
+  },
+  {
+    "id": 8,
+    "username": "Géraldine",
+    "message": "Salut, ça va ?",
+    "createdAt": "2024-07-19T07:34:00"
+  },
+  {
+    "id": 9,
+    "username": "Jérémy",
+    "message": "Salut, ça va ?",
+    "createdAt": "2024-07-18T21:22:00"
+  },
+  {
+    "id": 10,
+    "username": "François",
+    "message": "Coucou !",
+    "createdAt": "2024-07-18T11:36:00"
+  },
+  {
+    "id": 11,
+    "username": "Alice",
+    "message": "Qu'est-ce que vous faites ?",
+    "createdAt": "2024-07-19T08:20:00"
+  },
+  {
+    "id": 12,
+    "username": "David",
+    "message": "On se retrouve quand ?",
+    "createdAt": "2024-07-19T03:16:00"
+  },
+  {
+    "id": 13,
+    "username": "Géraldine",
+    "message": "Quoi de neuf ?",
+    "createdAt": "2024-07-19T07:18:00"
+  },
+  {
+    "id": 14,
+    "username": "Alice",
+    "message": "Salut, ça va ?",
+    "createdAt": "2024-07-18T09:21:00"
+  },
+  {
+    "id": 15,
+    "username": "Géraldine",
+    "message": "Comment ça va ?",
+    "createdAt": "2024-07-18T12:07:00"
+  },
+  {
+    "id": 16,
+    "username": "Alice",
+    "message": "Allo ?",
+    "createdAt": "2024-07-18T10:37:00"
+  },
+  {
+    "id": 17,
+    "username": "David",
+    "message": "Content de vous voir !",
+    "createdAt": "2024-07-18T09:41:00"
+  },
+  {
+    "id": 18,
+    "username": "François",
+    "message": "Allo ?",
+    "createdAt": "2024-07-19T04:11:00"
+  },
+  {
+    "id": 19,
+    "username": "Jérémy",
+    "message": "Comment ça va ?",
+    "createdAt": "2024-07-18T11:35:00"
+  },
+  {
+    "id": 20,
+    "username": "Bob",
+    "message": "Je suis là !",
+    "createdAt": "2024-07-18T19:18:00"
+  },
+  {
+    "id": 21,
+    "username": "David",
+    "message": "Quoi de neuf ?",
+    "createdAt": "2024-07-18T18:12:00"
+  },
+  {
+    "id": 22,
+    "username": "Alice",
+    "message": "Quelqu'un est là ?",
+    "createdAt": "2024-07-19T08:24:00"
+  }
+]

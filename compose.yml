@@ -3,7 +3,7 @@ services:
     build:
       context: ./api
     volumes:
-      - ./messages.json:/usr/src/app/messages.json
+      - ./messages.json:/usr/src/app/messages.json    
   front:
     image: httpd:latest
     volumes:
@@ -17,3 +17,5 @@ services:
     depends_on:
       - api
       - front
+  redis:
+    image: redis

@@ -34,6 +34,10 @@
     <div id="app" class="container">
         <h1>oChat</h1>
 
+        <div v-if="weather.temperature != ''" class="alert alert-secondary">
+            Bonjour ! Il fait actuellement <b>{{ weather.temperature }}</b>, la vitesse du vent est de <b>{{ weather.wind_speed }}</b>.
+        </div>
+
         <!-- Form to submit a message -->
         <form @submit.prevent="addMessage">
             <div class="form-group">
@@ -59,28 +63,94 @@
                 Aucun message trouvé.
             </div>
         </div>
+
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                    <a class="page-link" @click.prevent="changePage(currentPage - 1)">Page précédente</a>
+                </li>
+                <li class="page-item" v-for="page in totalPages" :class="{ active: currentPage === page }">
+                    <a class="page-link" @click.prevent="changePage(page)">{{ page }}</a>
+                </li>
+                <li class="page-item" :class="{ disabled: currentPage >= totalPages }">
+                    <a class="page-link" @click.prevent="changePage(currentPage + 1)">Page suivante</a>
+                </li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <!-- Form to send support message -->
+        <form @submit.prevent="sendSupportMessage">
+            <h2>Contactez-nous</h2>
+            <p>Un problème ? Contactez-nous !</p>
+            <div class="form-group">
+                <label for="supportEmail">Votre adresse e-mail</label>
+                <input type="email" id="supportEmail" v-model="supportMessage.email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="supportMessage">Votre problème :</label>
+                <textarea id="supportMessage" v-model="supportMessage.message" rows="4" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary">Envoyer le message</button>
+        </form>
     </div>
 
     <script>
         new Vue({
             el: '#app',
             data: {
-                api_url: 'http://host.local/api',
+                api_url: 'http://localhost/api',
                 messages: [],
-                newMessage: { username: '', message: '' }
+                newMessage: { username: '', message: '' },
+                supportMessage: { email: '', message: '' },
+                weather: { temperature: '', wind_speed: '' },
+                currentPage: 1,
+                totalPages: 1,
+                limit: 5
             },
             mounted() {
                 this.fetchMessages();
-                setInterval(this.fetchMessages, 5000);
+                this.fetchWeather();
+                //setInterval(this.fetchMessages, 5000);
             },
             methods: {
-                fetchMessages() {
-                    fetch(this.api_url + '/messages')
+                fetchWeather() {
+                    fetch(this.api_url + '/weather')
                         .then(response => response.json())
-                        .then(messages => {
-                            this.messages = messages;
+                        .then(data => {
+                            this.weather = data.weather;
+                        })
+                        .catch(() => { console.error('Error fetching weather:', error) });
+                },
+                sendSupportMessage(){
+                    fetch(this.api_url + '/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(this.supportMessage)
+                    })
+                    .then(newMessage => {
+                        alert('Votre message a bien été envoyé. Vous recevrez une réponse sous 48 heures.');
+                    })
+                    .catch(error => console.error('Error sending support message:', error));
+                },
+                fetchMessages() {
+                    fetch(this.api_url + `/messages?page=${this.currentPage}&limit=${this.limit}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.messages = data.messages;
+                            this.totalPages = data.totalPages;
+                            this.currentPage = data.page;
                         })
                         .catch(error => console.error('Error fetching messages:', error));
+                },
+                changePage(page){
+                  if(page > 0 && page <= this.totalPages){
+                    this.currentPage = page;
+                    this.fetchMessages();
+                  }  
                 },
                 addMessage() {
                     fetch(this.api_url + '/messages', {
